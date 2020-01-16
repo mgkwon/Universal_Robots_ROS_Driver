@@ -71,7 +71,12 @@ bool HardwareInterface::init(ros::NodeHandle& root_nh, ros::NodeHandle& robot_hw
   // The driver will offer an interface to receive the program's URScript on this port.
   int script_sender_port = robot_hw_nh.param("script_sender_port", 50002);
 
+  // Prefix for frame ids. Appending / for compatibility with robot_state_publisher.
   robot_hw_nh.param<std::string>("tf_prefix", tf_prefix_, "");
+  if (!tf_prefix_.empty())
+  {
+    tf_prefix_.append("/");
+  }
 
   // Path to the urscript code that will be sent to the robot.
   if (!robot_hw_nh.getParam("script_file", script_filename))

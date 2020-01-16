@@ -784,11 +784,9 @@ This is the actual driver node containing the ROS-Control stack. Interfaces docu
 
  * "**tf_prefix**" (default: "")
 
-    Please add description. See hardware_interface.cpp line number: 74
-
-
-
-    	robot_hw_nh.param<std::string>("tf_prefix", tf_prefix_, "");
+    Prefix for transforms published by ur_hardware_interface and robot_state_publisher. The ur_hardware_interface published TCP tf "tool0_controller" and "base"
+    reading TCP pose directly from the controller. The robot_state_publisher publishes tfs using URDF from "robot_description" parameter and joint positions
+    from "joint_states" topic.
 
  * "**tool_baud_rate**" (Required)
 
